@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\admin\CuponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\SslCommerzPaymentController;
@@ -127,7 +128,11 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('/subcategory/store','subcategorystore')->name('subcategorystore');
 
 
+
     });
+
+
+
 
 
 
@@ -142,6 +147,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
             // CATEGORY AJAX
             Route::get('subcategoryselect','subcategoryselect')->name('subcategoryselect');
+            
 
             // STORE BRAND
             Route::post('subcategoristore','brandstore')->name('subcategoristore');
@@ -172,10 +178,36 @@ Route::group(['middleware' => ['role:admin']], function () {
     });
 
 
+// CUPPON ADD ROUTE
+
+    Route::prefix('/admin')->controller(CuponController::class)->name('admin.')->group(function(){
+       
+
+        //  PRODUCT ROUTE
+        
+        Route::get('/show-all-cuponn','index')->name('cupon.showas');
+        Route::get('/add-cuponn','addcupon')->name('add.cupon');
+        Route::post('/cupon-create','store')->name('store.cupon');
+        
+
+
+        // STOTE PRODUCR
+        // Route::post('/store/peoduct','storeproduct')->name('storeproduct');
+
+        
+        // // AJAX FOR CATEGORY
+
+        // Route::get('productsubcategory','productsubcategory')->name('subcategoryproduct');
+
+
+    });
 
 
 
-           // SSLCOMMERZ Start
+
+
+
+       
 
 
 

@@ -13,7 +13,8 @@
 		<link rel="stylesheet" href="{{asset('asset/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('asset/css/custom.css')}}">
 
-		
+		{{--date time  --}}
+		<link rel="stylesheet" href="{{asset('asset/css/datetimepicker.css')}}">
 
 		<script src="https://kit.fontawesome.com/1159b8e81c.js" crossorigin="anonymous"></script>
 
@@ -163,11 +164,11 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="discount.html" class="nav-link">
+								<a href="{{route('admin.cupon.showas')}}" class="nav-link">
 									<i class="nav-icon  fa fa-percent" aria-hidden="true"></i>
 									<p>Discount</p>
 								</a>
-							</li>
+							</li>	
 							<li class="nav-item">
 								<a href="users.html" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
@@ -228,6 +229,11 @@
 
 	{{-- SELECT2 --}}
 	<script src="{{asset('asset/plugins/select2/js/select2.min.js')}}"></script>
+	{{-- <script src="{{asset('asset/js/jquery-3.7.0.min.js')}}"></script> --}}
+
+
+	<script src="{{asset('asset/js/jquery-3.7.0.min.js')}}"></script>
+	<script src="{{asset('asset/js/datetimepicker.js')}}"></script>
 
 <script>
 	

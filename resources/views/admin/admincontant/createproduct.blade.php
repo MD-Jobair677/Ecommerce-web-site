@@ -8,7 +8,7 @@
 
 @section('contant')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<d  iv class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">					
         <div class="container-fluid my-2">
@@ -177,7 +177,7 @@
                         </div>
                     </div> 
                     <div class="card">
-                        <div class="card-body">	
+                         <div class="card-body">	
                             <h2 class="h4  mb-3">Product category</h2>
                             <div class="mb-3">
                                 <label for="category">Category</label>
@@ -202,7 +202,7 @@
                                     <option value="">Headphones</option> --}}
                                 </select>
                             </div>
-                        </div>
+                        </div> 
                     </div> 
                     <div class="card mb-3">
                         <div class="card-body">	
