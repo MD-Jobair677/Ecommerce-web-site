@@ -158,9 +158,11 @@
     
    
         <!-- /.card -->
-    </section>
+  
     <!-- /.content -->
+      </section>
 </div>
+@endsection
 <!-- /.content-wrapper -->
 
 @push('ajex')
@@ -318,4 +320,3 @@
    
 @endpush
     
-@endsection

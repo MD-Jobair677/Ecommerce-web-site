@@ -1,7 +1,7 @@
 
 @extends('frontendlayout.header')
 
-
+@section('frontendcontant')
 
 <main>
     <section class="section-5 pt-3 pb-3 mb-3 bg-white">
@@ -212,6 +212,8 @@
 
                 </form>
 
+                
+
                           
                     <!-- CREDIT CARD FORM ENDS HERE -->
                     
@@ -221,7 +223,7 @@
     </section>
 </main>
 
-
+@endsection
 @push('customjs')
 <script>
     $('#payment_method_one').click(function(){

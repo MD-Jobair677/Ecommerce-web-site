@@ -8,7 +8,7 @@
 
 @section('contant')
 <!-- Content Wrapper. Contains page content -->
-<d  iv class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">					
         <div class="container-fluid my-2">

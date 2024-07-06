@@ -11,7 +11,7 @@
 					<div class="container-fluid my-2">
 						<div class="row mb-2">
 							<div class="col-sm-6">
-								<h1>Categories</h1>
+								<h1>Discount cupon</h1>
 							</div>
 							<div class="col-sm-6 text-right">
 								<a href="{{route('admin.add.cupon')}}" class="btn btn-primary">Add Cupon Code</a>
@@ -50,6 +50,7 @@
 								<table class="table table-hover text-nowrap">
 									<thead>
 										<tr>
+											<th>#</th>
 											<th width="60">CUPON ID</th>
 											<th>Code</th>
 											<th>Name</th>

@@ -104,7 +104,7 @@
 
 
     <section class="section-3">
-        <div class="container">
+        <div class="container ">
             <div class="section-title">
                 <h2>Categories</h2>
             </div>           

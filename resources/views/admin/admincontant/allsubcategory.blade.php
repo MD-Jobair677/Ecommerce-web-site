@@ -35,6 +35,9 @@
                           </div>
                     </div>
                 </div>
+
+
+                
                 <div class="card-body table-responsive p-0">								
                     <table class="table table-hover text-nowrap">
                         <thead>
@@ -122,6 +125,9 @@
                         </tbody>
                     </table>										
                 </div>
+
+
+
                 <div class="card-footer clearfix">
                    {{$subcategory->links()}}
                 </div>

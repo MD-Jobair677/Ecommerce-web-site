@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\admin\CuponController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\frontendcontroller\FrontendController;
@@ -57,25 +58,29 @@ Route::get('/',[FrontendController::class,'index'])->name('index');
     Route::post('/card-delete',[CardController::class,'carddelet'])->name('carddelet');
 
 
-    // CARD CONTROLLER END
+    
+
+       // CARD CONTROLLER END
 
 
-        Route::get('/payment1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-        Route::get('/payment2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+       Route::get('/payment1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+       Route::get('/payment2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-        Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-        Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay');
+       Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+       Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay-via-ajax');
 
-        Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-        Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-        Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+       Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+       Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+       Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
-        Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
-        //SSLCOMMERZ END
+       Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+       //SSLCOMMERZ END
 
 
-        Route::get('/chackout',[CardController::class,'chackout'])->name('chackout');
-        Route::post('/procesto-chack-out',[CardController::class,'process'])->name('process');
+       Route::get('/chackout',[CardController::class,'chackout'])->name('chackout');
+       Route::post('/procesto-chack-out',[CardController::class,'process'])->name('process');
+
+    
 
 
    
@@ -201,13 +206,26 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
     });
-
-
-
-
-
-
+    Route::prefix('/admin')->controller(ShippingController::class)->name('admin.')->group(function(){
        
+
+        //  Shipping ROUTE
+        
+        Route::get('/show-all-shipping','allShipping')->name('show-all-shipping');
+        Route::get('/create-shipping','createShipping')->name('create-shipping');
+        Route::post('/add-shipping','AddShiping')->name('add-shipping');
+        
+
+
+      
+
+
+    });
+
+
+
+
+
 
 
 
