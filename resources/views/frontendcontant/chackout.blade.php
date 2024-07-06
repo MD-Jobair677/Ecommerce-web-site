@@ -52,7 +52,7 @@
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <select name="country" id="country" class="form-control">
+                                        <select name="country_id" id="country" class="form-control country">
                                             <option disabled selected>select contry</option>
                                             @forelse ($contryName as  $country)
                                             <option  {{!empty($customaraddress) && $customaraddress->contrie_id== $country->id  ? 'selected' : '' }}    value="{{$country->id}}">{{$country->name}}   </option>
@@ -150,18 +150,22 @@
 
                             <div class="d-flex justify-content-between summery-end">
                                 <div class="h6"><strong>Subtotal</strong></div>
-                                <div class="h6"><strong>${{Cart::subtotal()}}</strong></div>
+                                <div class="h6"><strong class="subtotal">${{Cart::subtotal()}}</strong></div>
                             </div>
 
 
 
                             <div class="d-flex justify-content-between mt-2">
-                                <div class="h6"><strong>Shipping</strong></div>
-                                <div class="h6"><strong>$0</strong></div>
+                                <div class="h6"><strong>Shipping</strong> <span class="Shipping" >({{$Cartqty ."X".$shippingCharge}})</span> </div>
+
+                                <div class="h6"><strong class="totalShippingCharge">${{$totalShippingCharge}}</strong></div>
                             </div>
+
+
+
                             <div class="d-flex justify-content-between mt-2 summery-end">
                                 <div class="h5"><strong>Total</strong></div>
-                                <div class="h5"><strong>${{Cart::subtotal()}}</strong></div>
+                                <div class="h5"><strong class="grandtotal">${{$grandtotal}}</strong></div>
                             </div>                            
                         </div>
                     </div>   
@@ -226,6 +230,8 @@
 @endsection
 @push('customjs')
 <script>
+
+$(document).ready(function(){
     $('#payment_method_one').click(function(){
        if( $(this).is(':checked')==true){
 
@@ -243,6 +249,65 @@
 
        }
     })
+
+
+
+
+
+    {{-- WHENE COUNTRY CHANGE  THEN SHIPPING_CHARGE CHANGE--}}
+       $(".country").change(function(){
+
+        $.ajax ({
+
+            url:"{{route('admin.shipping-charge')}}",
+            type:'GET',
+            data: {
+                country_id:$(this).val()
+            } ,
+            dataType:'json',
+
+            success:function(response){
+               
+               if(response.status==true){
+
+                $('.totalShippingCharge').html('$'+response.totalShippingCharge);
+                $('.grandtotal').html('$'+response.grandtotal);
+                $('.Shipping').html( "("+ response.Cartqty +"X"+response.shippingCharge+ ")" );
+                
+
+
+
+
+               }
+
+            }
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+        
+        });
+
+
+
+
+
+})
+
+    
+
+
 </script>
     
 @endpush

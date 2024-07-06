@@ -214,6 +214,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/show-all-shipping','allShipping')->name('show-all-shipping');
         Route::get('/create-shipping','createShipping')->name('create-shipping');
         Route::post('/add-shipping','AddShiping')->name('add-shipping');
+        Route::get('/shipping-charge','shippingCharge')->name('shipping-charge');
         
 
 

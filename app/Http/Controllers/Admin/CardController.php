@@ -10,6 +10,7 @@ use App\Models\customeraddress;
 use App\Models\Myorder;
 use App\Models\Orderitem;
 use App\Models\Product;
+use App\Models\ShippingCharge;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Ui\Presets\React;
@@ -68,7 +69,7 @@ class CardController extends Controller
 
             if($productAlreadyExist == false){
 
-                Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => $product->qty, 'price' => $product->price, 'options' => ['size' => 'large']]);
+                Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' =>1, 'price' => $product->price, 'options' => ['size' => 'large']]);
                 return response()->json([
                   'status'=>true,
                   'message'=> $product->title.'Product added in card',
@@ -93,7 +94,7 @@ class CardController extends Controller
         }else{
 
             //whene card empty
-              Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => $product->qty, 'price' => $product->price, 'options' => ['size' => 'large']]);
+              Cart::add(['id' => $product->id, 'name' => $product->title, 'qty' => 1, 'price' => $product->price, 'options' => ['size' => 'large']]);
               return response()->json([
                 'status'=>true,
                 'message'=> $product->title.'Product added in card',
@@ -173,10 +174,25 @@ class CardController extends Controller
             // return redirect()->route('chackout');
             $contryName = Contrie::orderBy("name",'ASC')->get();
             
+
             $customaraddress = customeraddress::where('user_id',auth()->user()->id)->first();
-            // dd($customaraddress);
+            // SHIPPING ADD WHEN USER ALREDY EXIST IN DATABASE AND MINIMUM BUY ONE PRODUCT
+            $shippingCharge = ShippingCharge::where('contrie_id',$customaraddress->contrie_id)->value('shipping_charge');
+
+            $subtotal = Cart::subtotal(2,'.','');
+            $grandtotal = 0;
+            $Cartqty = 0;
+            foreach(Cart::content() as $item ){
+                $Cartqty+=$item->qty;
+                
+            }
+            $totalShippingCharge =number_format($shippingCharge,2)  * number_format($Cartqty,2) ;
+            $grandtotal  =number_format( $totalShippingCharge, 2 ) +  $subtotal ;
+            
+
+            // dd($grandtotal);
             $navlinks = Categorie::where('status',1)->with('Subcategorie')->latest()->take(7)->get();
-            return view('frontendcontant.chackout',compact('navlinks','cardcontant','contryName','customaraddress'));
+            return view('frontendcontant.chackout',compact('navlinks','cardcontant','contryName','customaraddress','totalShippingCharge','grandtotal','Cartqty','shippingCharge'));
 
         }
 

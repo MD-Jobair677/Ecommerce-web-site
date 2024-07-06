@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Contrie;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
 use App\Models\ShippingCharge;
+use App\Http\Controllers\Controller;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\Facades\Validator;
 
@@ -76,9 +77,39 @@ class ShippingController extends Controller
 
         }
 
-
-
-
        
     }
+
+    // SHIPPING ADD IN FRONTEND
+
+    function shippingCharge(Request $request){
+       
+        $shippingCharge = ShippingCharge::where('contrie_id',$request->country_id)->value('shipping_charge');
+
+        $subtotal = Cart::subtotal(2,'.','');
+        $grandtotal = 0;
+        $Cartqty = 0;   
+        foreach(Cart::content() as $item ){
+            $Cartqty+=$item->qty;
+            
+        }
+        $totalShippingCharge = $shippingCharge * $Cartqty ;
+        $grandtotal  =  $totalShippingCharge +  $subtotal;
+
+        return response()->json([
+            'status'=> true,
+            'totalShippingCharge'=>number_format($totalShippingCharge)   ,
+            'subtotal ' =>$subtotal  ,
+            'grandtotal' => number_format($grandtotal) ,
+            'Cartqty' => number_format($Cartqty) ,
+            'shippingCharge' => number_format($shippingCharge) ,
+        ]);
+
+
+        
+    }
+
+
+
+
 }
