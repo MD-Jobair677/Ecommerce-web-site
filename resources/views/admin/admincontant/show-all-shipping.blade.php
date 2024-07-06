@@ -24,32 +24,38 @@
 					<div class="container-fluid">
 						<div class="card">
 							
-							<form action="" method="get">
+						
 							<table class="table">
                                 <thead>
                                     <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Country Name</th>
                                     <th scope="col">Charge</th>
-                                    <th scope="col">status</th>
-                                    <th scope="col">Edite</th>
+                                   
+                                    <th scope="col">Action</th>
                                     
                                  
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
+
+								@foreach ($allShippings as $key =>$allShipping )
+								<tr>
+                                    <th scope="row">{{++$key}}</th>
+                                    <td>{{$allShipping->Contrie->name}}</td>
+                                   
+                                    <td>{{$allShipping->shipping_charge,10,2}}</td>
+                                    <td>edite</td>
                                  
                                     </tr>
+									
+								@endforeach
+                                    
                                     
                                 </tbody>
                                 </table>
 
-							</form>
+							
 							
 							
 
@@ -58,6 +64,7 @@
 					<!-- /.card -->
 				</section>
 				<!-- /.content -->
+				 {{-- {{$allShippings->links()}} --}}
 			</div>
 			<!-- /.content-wrapper -->
 

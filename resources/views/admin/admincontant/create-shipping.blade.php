@@ -15,6 +15,10 @@
                     </div>
                 </div>
             </div>
+
+            <div class="alert " role="alert">
+            
+            </div>
             <!-- /.container-fluid -->
         </section>
         <!-- Main content -->
@@ -65,7 +69,7 @@
                                 <div class="mb-3">
                                     <label for="Shipping_charge">Shipping Charge</label>
                                     <input type="number" name="Shipping_charge" id="Shipping_charge" class="form-control Shipping_charge"
-                                        placeholder="Shipping Charge" max="10" min="0">
+                                        placeholder="Shipping Charge" max="1000" min="0">
                                     <span class="text-danger slug"></span>
                                        <p class="Shipping_charge text-danger"></p>
                                 </div>
@@ -120,6 +124,8 @@
 
                         success: function(response) {
 
+                            console.log(response)
+
                           if(response.status==false){
 
                               if(response.errors.country_id != null){
@@ -141,22 +147,23 @@
                                 $('.Shipping_charge').removeClass('is-invalid')
                                  $('.Shipping_charge').html('')
 
-                              }     
+                              }  
+                              
+                               
+
+
     
 
                             
-
-                          
-
-
-
-
-
-
-
                           }else{
 
-                          
+                          $('.alert').addClass(' alert alert-success alert-dismissible fade show'). html(response.message)
+                           $('.country_id').removeClass('is-invalid')
+                            $('.country_name').html('')
+
+                             $('.Shipping_charge').removeClass('is-invalid')
+                                 $('.Shipping_charge').html('')
+
                             
 
                             
@@ -164,12 +171,8 @@
                           }
 
 
-
-
-
-
-
                         },
+
                         error: function(xhr, status, error) {
                             // Handle error
                             console.error(xhr, status, error);

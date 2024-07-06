@@ -6,18 +6,21 @@ use App\Models\Contrie;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShippingCharge;
 use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\Facades\Validator;
 
 class ShippingController extends Controller
 {
     function allShipping(){
+        $allShippings = ShippingCharge::with('Contrie')->get();
+        // dd($allShippings);
 
-        return view('admin.admincontant.show-all-shipping');
+        return view('admin.admincontant.show-all-shipping',compact('allShippings'));
     }
 
     function createShipping(){
-        $allCountris = Contrie::all();
+        $allCountris = Contrie::paginate(3);
 
         return view('admin.admincontant.create-shipping',compact('allCountris'));
     }
@@ -29,13 +32,38 @@ class ShippingController extends Controller
 
         ]);
 
+
+
         if($validate->passes()){
+
+
+            $shippingAlreadyExist = ShippingCharge::where('contrie_id',$request->country_id)->count();
+            if($shippingAlreadyExist >0){
+                return response()->json([
+                    'status'=>true,
+                    'message' => ' shippingAlreadyExist',
+        
+                ]);
+
+            }
+                $ShippingCharge = new ShippingCharge();
+
             
+            $ShippingCharge->contrie_id = $request->country_id;
+            $ShippingCharge->shipping_charge = $request->Shipping_charge;
+            $ShippingCharge->save();
+
+            $message = 'Shipping Create successfully';
+        
             return response()->json([
                 'status'=>true,
-                'errors'=>'hwello',
+                'message' => $message,
     
             ]);
+
+            
+            
+            
 
 
 
@@ -51,9 +79,6 @@ class ShippingController extends Controller
 
 
 
-        return response()->json([
-            'status'=>$validate->errors(),
-
-        ]);
+       
     }
 }
