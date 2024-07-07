@@ -52,7 +52,7 @@
 										<tr>
 											<th>#</th>
 											<th width="60">CUPON ID</th>
-											<th>Code</th>
+											
 											<th>Name</th>
 											<th>DISCRIPTOIN</th>
 											<th>MAX USES</th>
@@ -76,6 +76,7 @@
 											
 											<td>{{$alldescounts->firstItem()+$key}}</td>
 											<td>{{$alldescount->code}}</td>
+											
 											<td>{{$alldescount->name}}</td>
 											<td>{{$alldescount->discriptoin}}</td>
 											<td>{{$alldescount->max_uses}}</td>
@@ -183,9 +184,9 @@
 						</div>
 					</div>
 					<!-- /.card -->
-				</section>
+				
 				<!-- /.content -->
-			{{-- </div> --}}
+			</div>
 			<!-- /.content-wrapper -->
 
 

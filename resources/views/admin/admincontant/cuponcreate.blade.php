@@ -48,7 +48,7 @@
                                 @csrf
                                 @method('post')
                             <label for="name">Code</label>
-                            <input type="text" name="code"  id="code" class="form-control" placeholder="Name">
+                            <input type="text" name="code"  id="code" class="form-control" placeholder="Code">
                             <span class="text-danger name"></span>
                             
                         </div>

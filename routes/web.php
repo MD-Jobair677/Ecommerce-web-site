@@ -193,6 +193,7 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/show-all-cuponn','index')->name('cupon.showas');
         Route::get('/add-cuponn','addcupon')->name('add.cupon');
         Route::post('/cupon-create','store')->name('store.cupon');
+       
         
 
 
@@ -216,7 +217,10 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('/add-shipping','AddShiping')->name('add-shipping');
         Route::get('/shipping-charge','shippingCharge')->name('shipping-charge');
         
+         // CUPPON APPLAY ROUTE
 
+
+         Route::get('/cupon-appaly','CupponApplay')->name('cupon-appaly');
 
       
 

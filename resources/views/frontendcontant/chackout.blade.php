@@ -153,6 +153,11 @@
                                 <div class="h6"><strong class="subtotal">${{Cart::subtotal()}}</strong></div>
                             </div>
 
+                            <div class="d-flex justify-content-between ">
+                                <div class="h6"><strong class="">Discount</strong></div>
+                                <div class="h6"><strong class="discount"></strong></div>
+                            </div>
+
 
 
                             <div class="d-flex justify-content-between mt-2">
@@ -168,7 +173,19 @@
                                 <div class="h5"><strong class="grandtotal">${{$grandtotal}}</strong></div>
                             </div>                            
                         </div>
-                    </div>   
+                    </div>  
+
+                    {{-- CUPPON  --}}
+
+                     <div class="input-group apply-coupan mt-4">
+                        <input type="text" id="discount_code" placeholder="Coupon Code" class="form-control" name="cuppon_code">
+                        <button class="btn btn-dark" id="cuppon_apply" type="button" id="button-addon2">Apply Coupon</button>
+                    </div>  
+
+
+
+
+
                     
                     <div class="card payment-form ">
                         <h3 class="card-title h5 mb-3">Payment Method</h3> 
@@ -290,22 +307,50 @@ $(document).ready(function(){
         })
 
 
-
-
-
-
-
-
-        
         });
+
+            
+{{-- APPLY CUPON  --}}
+
+            $('#cuppon_apply').click(function(){
+
+                $.ajax({
+                    url:"{{route('admin.cupon-appaly')}}",
+                    type:"GET",
+                    data:{
+                        cuppon_id:$('#discount_code').val(),
+                        country_id: $('#country').val(),
+
+                    },
+
+                    dataType:'json',
+
+                    success:function(response){
+                        console.log(response.discount)
+                        
+                        if(response.status==true){
+
+                            $('.totalShippingCharge').html('$'+response.totalShippingCharge);
+                            $('.grandtotal').html('$'+response.grandtotal);
+                            $('.Shipping').html( "("+ response.Cartqty +"X"+response.shippingCharge+ ")" );
+                            $('.discount').html( '$'+ response.discount );
+                            
+                         }
+
+
+
+                        
+
+                    }
+                })
+        })
+
 
 
 
 
 
 })
-
-    
 
 
 </script>
