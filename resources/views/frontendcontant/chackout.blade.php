@@ -158,12 +158,21 @@
                                 <div class="h6"><strong class="discount"></strong></div>
                             </div>
 
+                            <div class="discoun_amount">
+                            <input type="hidden"  name="discoun_amount" value="eee"   placeholder="discoun_amount" class="form-control">
+                       
+                        
+                            </div>
+
 
 
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="h6"><strong>Shipping</strong> <span class="Shipping" >({{$Cartqty ."X".$shippingCharge}})</span> </div>
 
+                              
+
                                 <div class="h6"><strong class="totalShippingCharge">${{$totalShippingCharge}}</strong></div>
+                                 <input type="hidden" name="shipping" value="{{$totalShippingCharge}}"  id="expiry_date" placeholder="123" class="form-control">
                             </div>
 
 
@@ -171,7 +180,14 @@
                             <div class="d-flex justify-content-between mt-2 summery-end">
                                 <div class="h5"><strong>Total</strong></div>
                                 <div class="h5"><strong class="grandtotal">${{$grandtotal}}</strong></div>
-                            </div>                            
+                            </div>     
+
+                            <div class="garnd_total_input">
+                            <input type="hidden"  id="garnd_total_input" value="" placeholder="garnd_total_int" class="form-control" name="garnd_total_inputt">
+
+                            </div>
+
+
                         </div>
                     </div>  
 
@@ -229,6 +245,10 @@
                             {{-- <a href="#" class="btn-dark btn btn-block w-100">Pay Now</a> --}}
                             {{-- <button type="submit">Register</button> --}}
                         </div>
+
+                        
+                       
+
                     </div>
 
                 </form>
@@ -284,14 +304,23 @@ $(document).ready(function(){
             dataType:'json',
 
             success:function(response){
-               
+                
+             let grandtotal =    parseInt(response.subtotal) + parseInt(response.totalShippingCharge ) ;
+
+
                if(response.status==true){
+                let shipping = response.totalShippingCharge;
+                $("input[name='shipping']").val(shipping);
+
+                     $('.grandtotal').html('$'+ grandtotal);
 
                 $('.totalShippingCharge').html('$'+response.totalShippingCharge);
-                $('.grandtotal').html('$'+response.grandtotal);
-                $('.Shipping').html( "("+ response.Cartqty +"X"+response.shippingCharge+ ")" );
-                
 
+                $('.Shipping').html( "("+ response.Cartqty +"X"+response.shippingCharge+ ")" );
+                $('input[name="cuppon_code"]').val('');
+                $("input[name='garnd_total_inputt']").val(grandtotal);
+                $('.discount').html( '' ) ;
+                 $('input[name="discoun_amount"]').val('')   ;
 
 
 
@@ -326,15 +355,46 @@ $(document).ready(function(){
                     dataType:'json',
 
                     success:function(response){
-                        console.log(response.discount)
                         
+                            
+
+
                         if(response.status==true){
+                             var garnd_total_input = $("input[name='garnd_total_inputt']");
+                       
+
+
+
+                            var discount = response.discount;
+                            var discountinput = $('input[name="discoun_amount"]')
+
+                            var garnd_total = response.grandtotal;
+                           
 
                             $('.totalShippingCharge').html('$'+response.totalShippingCharge);
+                            
+
+
                             $('.grandtotal').html('$'+response.grandtotal);
                             $('.Shipping').html( "("+ response.Cartqty +"X"+response.shippingCharge+ ")" );
-                            $('.discount').html( '$'+ response.discount );
+                            $('.discount').html( '$'+ response.discount ) ;
+                            discountinput.val(discount);
                             
+                            garnd_total_input.val(garnd_total);
+                            
+                         }else{
+
+                           $('.discoun_amount').html('' ) ;
+                           $('.discount').html( '$'+ response.discount ) ;
+
+                         }
+
+                         {{-- whene status false --}}
+
+                         if(response.status==false){
+                             $('.discoun_amount').html(' ' ) ;
+                             $('.discount').html( '' ) ;
+
                          }
 
 

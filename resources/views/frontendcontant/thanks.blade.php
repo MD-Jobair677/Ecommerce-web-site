@@ -9,7 +9,7 @@
 <body>
 
     <h1>Thank for your Order </h1>
-    <h3>Your Order ID {{$myorderid}}</h3>
+    <h3>Your Order ID {{$myorder_id}}</h3>
     
 </body>
 </html>

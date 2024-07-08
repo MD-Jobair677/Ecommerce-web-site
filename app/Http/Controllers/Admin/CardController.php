@@ -202,6 +202,8 @@ class CardController extends Controller
 
     //PROCESS TO CHACHOUT
     function process(Request $request){
+
+        // dd($request->all()); 
         
         // validatiuon
 
@@ -213,7 +215,7 @@ class CardController extends Controller
         $address->first_name=$request->first_name;
         $address->last_name=$request->last_name;
         $address->email=$request->email;
-        $address->contrie_id=$request->country;
+        $address->contrie_id=$request->country_id;
         $address->address=$request->address;
         $address->apertment=$request->appartment;
         $address->cty=$request->city;
@@ -228,28 +230,30 @@ class CardController extends Controller
 
         $myorder = new Myorder();
         $shipping = 0;
-        $discount = 0;
-      $subtotal = Cart::subtotal(2,'.','');
-    $grandtotal = ($subtotal +  $shipping)-$discount ;
+        $discount = $request->discoun_amount?$request->discoun_amount:0 ;
+        $subtotal = Cart::subtotal(2,'.','');
+        $grandtotal = ($subtotal +  $shipping)-$discount ;
     // dd($grandtotal);
 
         if($request->payment_method_1 =='cod'){
+
+            // dd('hello');
             $myorder->user_id=auth()->user()->id;
             $myorder->subtotal =$subtotal ;
             // $request->shipping ? $request->shipping:null
-            $myorder->shipping =2;  
-            $myorder->cupon =$request->cupon ? $request->cupon:null;
-            $myorder->discount =$request->discount ? $request->discount:null;
+            $myorder->shipping =$request->shipping;  
+            $myorder->cupon =$request->cuppon_code ? $request->cuppon_code:null;
+            $myorder->discount =$request->discoun_amount ? $request->discoun_amount:null;
 
-            $myorder->garnd_total =$grandtotal ;
+            $myorder->garnd_total =$request->garnd_total_inputt ;
 
          
 
              //USER ADDRESS
-         $myorder->first_name=$request->first_name;
+         $myorder->first_name=$request->first_name ;
         $myorder->last_name=$request->last_name;
         $myorder->email=$request->email;
-        $myorder->contrie_id=$request->country;
+        $myorder->contrie_id=$request->country_id;
         $myorder->address=$request->address;
         $myorder->apertment=$request->appartment;
         $myorder->cty=$request->city;
@@ -259,11 +263,14 @@ class CardController extends Controller
         $myorder->nots=$request->order_notes;
            
         $myorder->save();
-
+           
         }
 
-        $myorderid = $myorder->id;
-       
+      
+
+        $myorder_id = $myorder->id;
+        
+        
 
         
 
@@ -273,7 +280,7 @@ class CardController extends Controller
       
        foreach(Cart::content() as $item){
         $orderitem=new Orderitem();
-        $orderitem->myorder_id = $myorder->id;
+        $orderitem->myorder_id =  $myorder_id ;
         $orderitem->product_id = $item->id;
         $orderitem->name = $item->name;
         $orderitem->qty = $item->qty;
@@ -286,7 +293,7 @@ class CardController extends Controller
 
        Cart::destroy();
        
-    return view('frontendcontant.thanks',compact('myorderid'));
+    return view('frontendcontant.thanks',compact('myorder_id'));
 
 
     }

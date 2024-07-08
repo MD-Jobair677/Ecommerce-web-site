@@ -88,7 +88,7 @@ class ShippingController extends Controller
        
         $subtotal = Cart::subtotal(2,'.','');
         // cuppon applay
-        $discount = 0;
+        $discount = 0; 
         if(session()->has('code')){
             $code = session()->get('code');
             // $discount_code = Dicountcupon::where('code',$code->code)->first();
@@ -118,7 +118,7 @@ class ShippingController extends Controller
         return response()->json([
             'status'=> true,
             'totalShippingCharge'=>number_format($totalShippingCharge)   ,
-            'subtotal' =>$subtotal  ,
+            'subtotal' =>number_format($subtotal)  ,
             'discount' => $discount,
             'grandtotal' => number_format($grandtotal) ,
             'Cartqty' => number_format($Cartqty) ,
@@ -179,7 +179,7 @@ class ShippingController extends Controller
            }
 
         }
-
+        
 
         session()->put('code',$code);
 
@@ -191,7 +191,7 @@ class ShippingController extends Controller
 
 
 
-
+            
 
         
     }
