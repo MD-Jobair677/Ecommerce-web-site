@@ -184,7 +184,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     });
 
 
-// CUPPON ADD ROUTE
+        // CUPPON ADD ROUTE
 
     Route::prefix('/admin')->controller(CuponController::class)->name('admin.')->group(function(){
        
@@ -231,35 +231,35 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
-        // USER ACCOUNT
         
 
-
-        Route::group(['middleware' => 'auth'], function () { 
-
-            Route::prefix('/user')->controller(AccountController::class)->name('user.')->group(function(){
-
-            Route::get('/order','order')->name('account');
-            Route::get('/profile','profile')->name('profile');
-            Route::get('/wishlist','wishlist')->name('wishlist');
-            Route::get('/changepassword','changepassword')->name('changepassword');
-
-
-
-
-
-            });
-
-
-        });
-
- 
-
-
-
-  
-
 });
+
+
+
+
+        // USER ACCOUNT
+                    Route::group(['middleware' => ['role:user|admin']], function () { 
+
+                        Route::prefix('/user')->controller(AccountController::class)->name('user.')->group(function(){
+
+                        Route::get('/order','order')->name('account');
+                        Route::get('/profile','profile')->name('profile');
+                        Route::get('/wishlist','wishlist')->name('wishlist');
+
+                        Route::get('/changepassword','changepassword')->name('changepassword');
+
+                        Route::get('/order-details/{id}','OrderDetails')->name('order.details');
+
+
+
+
+
+                        });
+
+
+                    });
+
 
 
  //  USER ROUTE

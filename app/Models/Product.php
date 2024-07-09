@@ -13,4 +13,14 @@ class Product extends Model
     function Categorie(){
         return $this->belongsTo(Categorie::class);
     }
+   
+    function orderitem(){
+        return $this->hasMany(Orderitem::class);
+    }
+   
+
+
+
+
+
 }

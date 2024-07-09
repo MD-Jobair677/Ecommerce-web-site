@@ -23,7 +23,7 @@
                                         @forelse ($myOrders as $key => $myOrder )
                                          <tr>
                                             <td>
-                                                <a href="order-detail.php">{{$myOrder->id}}</a>
+                                                <a href="{{route('user.order.details',$myOrder->id)}}">{{$myOrder->id}}</a>
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($myOrder->created_at)->format('d M Y')}}</td>
 
@@ -41,21 +41,6 @@
                                          @endif
 
                                     
-
-                                                 
-                                                
-                                                
-                                               
-                                         
-
-                                               
-                                                
-
-                                               
-                                                   
-                                                
-                                                
-                                             
                                               </td>  
                                             
 
@@ -64,7 +49,7 @@
                                             
                                         @empty
                                         
-                                            
+                                            <h1>No order Found</h1>
                                         @endforelse
 
                                        
