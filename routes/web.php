@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Account\AccountController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
@@ -207,6 +208,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
     });
+
     Route::prefix('/admin')->controller(ShippingController::class)->name('admin.')->group(function(){
        
 
@@ -229,10 +231,27 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
+        // USER ACCOUNT
+        
+
+
+        Route::group(['middleware' => 'auth'], function () { 
+
+            Route::prefix('/user')->controller(AccountController::class)->name('user.')->group(function(){
+
+            Route::get('/order','order')->name('account');
+            Route::get('/profile','profile')->name('profile');
+            Route::get('/wishlist','wishlist')->name('wishlist');
+            Route::get('/changepassword','changepassword')->name('changepassword');
 
 
 
 
+
+            });
+
+
+        });
 
  
 

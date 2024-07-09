@@ -52,164 +52,109 @@
 </head>
 <body data-instant-intensity="mousedown">
 
-<div class="bg-light top-header">        
-	<div class="container">
-		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
-			<div class="col-lg-4 logo">
-				<a href="index.php" class="text-decoration-none">
-					<span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
-					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span>
-				</a>
-			</div>
-			<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-				<a href="{{route('user.account')}}" class="nav-link text-dark">My Account</a>
-				<form action="">					
-					<div class="input-group">
-						<input type="text" placeholder="Search For Products" class="form-control" aria-label="Amount (to the nearest dollar)">
-						<span class="input-group-text">
-							<i class="fa fa-search"></i>
-					  	</span>
+		<div class="bg-light top-header">        
+			<div class="container">
+				<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
+					<div class="col-lg-4 logo">
+						<a href="index.php" class="text-decoration-none">
+							<span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
+							<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span>
+						</a>
 					</div>
-				</form>
-			</div>		
+					<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
+						<a href="{{route('user.account')}}" class="nav-link text-dark">My Account</a>
+						<form action="">					
+							<div class="input-group">
+								<input type="text" placeholder="Search For Products" class="form-control" aria-label="Amount (to the nearest dollar)">
+								<span class="input-group-text">
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</form>
+					</div>		
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
 
-<header class="bg-dark">
-	<div class="container">
-		<nav class="navbar navbar-expand-xl" id="navbar">
-			<a href="index.php" class="text-decoration-none mobile-logo">
-				<span class="h2 text-uppercase text-primary bg-dark">Online</span>
-				<span class="h2 text-uppercase text-white px-2">SHOP</span>
-			</a>
-			<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      			<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
-				  <i class="navbar-toggler-icon fas fa-bars"></i>
-    		</button>
-    		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<header class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-expand-xl" id="navbar">
+					<a href="index.php" class="text-decoration-none mobile-logo">
+						<span class="h2 text-uppercase text-primary bg-dark">Online</span>
+						<span class="h2 text-uppercase text-white px-2">SHOP</span>
+					</a>
+					<button class="navbar-toggler menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<!-- <span class="navbar-toggler-icon icon-menu"></span> -->
+						<i class="navbar-toggler-icon fas fa-bars"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
 
-
-      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li><a class="dropdown-item nav-link" href="{{route('shop')}}">Shop Now</a></li>
-        			<!-- <li class="nav-item">
-          				<a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
-        			</li> -->
-
-					@forelse ($navlinks as $navlink )
-					<li class="nav-item dropdown">
-
-						{{-- <input type="text" value="{{ count($navlink->Subcategorie)>0  ? '1':'0'}}"> --}}
-
-
-						<button class="btn btn-dark   {{count($navlink->Subcategorie)>0  ? 'dropdown-toggle' :' '}}" data-bs-toggle="{{count($navlink->Subcategorie)>0  ? 'dropdown' :' '}}" aria-expanded="false">
-
-
-							{{$navlink->name}}
-						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-
-							@forelse ($navlink->Subcategorie as $subcategory )
-							<li><a class="dropdown-item nav-link" href="#">{{$subcategory->name}}</a></li>
-								
-							@empty
-								
-							@endforelse
-
-						</ul>
-					</li>
-						
-					@empty
 
 						
-					@endforelse
-
-					@guest
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('login')}}">login</a>
-					</li>
-
-					
-					
-										
-						@endguest
-						@auth
-
-						@role('admin')
-						<li class="nav-item">
-							<a class="nav-link" href="{{route('ome')}}">{{auth()->user()->name}} </a>
-						</li>
-						@else
-						<li class="nav-item">
-							<a class="nav-link" href="{{route('index')}}">{{auth()->user()->name}} </a>
-						</li>
-						@endrole
-
 						
-										
-						@endauth
-
-					</li>
-
-					
-
-					<li class="nav-item ">
 						
 
-						
-							<a class="dropdown-item nav-link" href="{{ route('logout') }}"
-							   onclick="event.preventDefault();
-											 document.getElementById('logout-form').submit();">
-								{{-- {{ __('Logout') }} --}}
-								<i class="fas fa-sign-out-alt mr-2">Logout</i>
-							</a>
-
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-								@csrf
-							</form>
-
-						
-					</li>
-					
 
 
-					{{-- <li>
-						<a class="dropdown-item" href="{{ route('logout') }}"
-								   onclick="event.preventDefault();
-												 document.getElementById('logout-form').submit();">
-									
-									<i class="fas fa-sign-out-alt mr-2"></i> Logout
-								</a>
-
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-									@csrf
-								</form>
-					</li> --}}
-
-
-
-					
-					
-      			</ul>   
-				
-				
-
-
-
-      		</div>   
-			<div class="right-nav py-0">
-				<a href="{{route('card')}}" class="ml-3 d-flex pt-2">
-					<i class="fas fa-shopping-cart text-primary"></i>					
-				</a>
-			</div> 		
-      	</nav>
-  	</div>
+					</div>   
+					<div class="right-nav py-0">
+						<a href="{{route('card')}}" class="ml-3 d-flex pt-2">
+							<i class="fas fa-shopping-cart text-primary"></i>					
+						</a>
+					</div> 		
+				</nav>
+			</div>
 </header>
 
+<main>
+    <section class="section-5 pt-3 pb-3 mb-3 bg-white">
+        <div class="container">
+            <div class="light-font">
+                <ol class="breadcrumb primary-color mb-0">
+                    <li class="breadcrumb-item"><a class="white-text" href="{{route('user.account')}}">My Account</a></li>
+                    <li class="breadcrumb-item">Settings</li>
+                </ol>
+            </div>
+        </div>
+    </section>
 
-@yield('frontendcontant')
+    <section class=" section-11 ">
+        <div class="container  mt-5">
+            <div class="row">
+
+            
+                <div class="col-md-3">
+                    <ul id="account-panel" class="nav nav-pills flex-column" >
+                        <li class="nav-item ">
+                            <a href="{{route('user.profile')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-login" aria-expanded="false"><i class="fas fa-user-alt"></i> My Profile</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="{{route('user.account')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-shopping-bag"></i>My Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.wishlist')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-heart"></i> Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('user.changepassword')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-lock"></i> Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('logout')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+	
+			@yield('frontendcontant')
+
+               
+            </div>
+        </div>
+    </section>
+</main>
+
+
 
 
 
