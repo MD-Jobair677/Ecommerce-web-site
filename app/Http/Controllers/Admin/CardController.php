@@ -246,6 +246,7 @@ class CardController extends Controller
             $myorder->discount =$request->discoun_amount ? $request->discoun_amount:null;
 
             $myorder->garnd_total =$request->garnd_total_inputt ;
+     
 
          
 

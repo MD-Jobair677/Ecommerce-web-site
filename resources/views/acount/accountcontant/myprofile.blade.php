@@ -13,15 +13,15 @@
                             <div class="row">
                                 <div class="mb-3">               
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Enter Your Name" class="form-control">
+                                    <input type="text" name="name" id="name" value="{{$user->name}}" placeholder="Enter Your Name" class="form-control">
                                 </div>
                                 <div class="mb-3">            
                                     <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" placeholder="Enter Your Email" class="form-control">
+                                    <input type="text" name="email" id="email"  value="{{$user->email}}"  placeholder="Enter Your Email" class="form-control">
                                 </div>
                                 <div class="mb-3">                                    
                                     <label for="phone">Phone</label>
-                                    <input type="text" name="phone" id="phone" placeholder="Enter Your Phone" class="form-control">
+                                    <input type="text" name="phone"  value=""  id="phone" placeholder="Enter Your Phone" class="form-control">
                                 </div>
 
                                 <div class="mb-3">                                    
