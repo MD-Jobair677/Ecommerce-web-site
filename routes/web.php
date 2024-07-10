@@ -268,6 +268,8 @@ Route::group(['middleware' => ['role:admin']], function () {
      Route::group(['middleware' => ['role:user|admin']], function () { 
 
      Route::post('add-wishlist',[WishlistController::class,'WishList'])->name('add-wishlist');
+    //  Route::get('get-wishlist',[AccountController::class,'getWishlist'])->name('get-wishlist');
+     Route::delete('delete-wishlist',[WishlistController::class,'deleteWishlist'])->name('delete-wishlist');
                         
 
       });

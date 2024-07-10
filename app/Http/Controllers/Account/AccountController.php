@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Controllers\Controller;
-use App\Models\Myorder;
 use App\Models\Order;
+use App\Models\Myorder;
+use App\Models\Wishlist;
 use App\Models\Orderitem;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
@@ -48,7 +49,10 @@ class AccountController extends Controller
 
 
     function wishlist(){
-        return view('acount.accountcontant.wishlist');
+        $wishLists = Wishlist::where('user_id',auth()->user()->id)->with('product')->get();
+        // dd($wishLists);
+
+        return view ('acount.accountcontant.wishlist',compact('wishLists'));
     }
 
     function changepassword(){

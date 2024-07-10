@@ -18,7 +18,11 @@ class Product extends Model
         return $this->hasMany(Orderitem::class);
     }
    
+    function wishlist (){
 
+        return  $this->hasMany(Wishlist::class);
+  
+      }
 
 
 

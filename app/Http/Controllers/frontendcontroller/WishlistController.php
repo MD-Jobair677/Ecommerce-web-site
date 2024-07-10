@@ -49,4 +49,38 @@ class WishlistController extends Controller
 
 
     }
+
+   
+
+    // DELETE WISHLIST
+    function deleteWishlist(Request $request){
+        
+        if($request->id==null){
+            return response()->json([
+                'status'=>false,
+                'message'=>'wishlist not found'
+
+            ]);
+
+        }
+
+        if($request->id !=null ){
+            
+
+         Wishlist::find($request->id)->delete();
+            return response()->json([
+                'status'=>true,
+                'message'=>'wishlist delete success',
+
+            ]);
+
+        }
+
+    }
+
+
+
+
+
+
 }
