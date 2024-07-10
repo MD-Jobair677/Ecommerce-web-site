@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\frontendcontroller\FrontendController;
+use App\Http\Controllers\frontendcontroller\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -262,7 +263,19 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
- //  USER ROUTE
+                    // WISHLIST
+
+     Route::group(['middleware' => ['role:user|admin']], function () { 
+
+     Route::post('add-wishlist',[WishlistController::class,'WishList'])->name('add-wishlist');
+                        
+
+      });
+
+
+
+
+
  
 
 

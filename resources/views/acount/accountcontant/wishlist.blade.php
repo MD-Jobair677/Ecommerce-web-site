@@ -5,7 +5,7 @@
 <div class="col-md-9">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="h5 mb-0 pt-2 pb-2">My Orders</h2>
+                            <h2 class="h5 mb-0 pt-2 pb-2">My Wishlist</h2>
                         </div>
                         <div class="card-body p-4">
                             <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
