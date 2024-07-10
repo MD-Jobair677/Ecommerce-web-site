@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Categorie;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+// use mail;
+use App\Mail\OrderMail;
 use App\Models\Contrie;
-use App\Models\customeraddress;
 use App\Models\Myorder;
-use App\Models\Orderitem;
 use App\Models\Product;
-use App\Models\ShippingCharge;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Categorie;
+use App\Models\Orderitem;
+use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
+use App\Models\ShippingCharge;
+use App\Models\customeraddress;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CardController extends Controller
 {
@@ -264,14 +267,17 @@ class CardController extends Controller
         $myorder->nots=$request->order_notes;
            
         $myorder->save();
+       
            
         }
 
-      
+
+
+        
 
         $myorder_id = $myorder->id;
         
-        
+           
 
         
 
@@ -292,6 +298,13 @@ class CardController extends Controller
 
        }
 
+       $orederDetails = Orderitem::where('myorder_id',$myorder->id)->with('product')->get();
+       $productDetailsMail =[
+                'order_id'=>$myorder->id ,
+                'orederDetails'=>$orederDetails,
+
+       ];
+       Mail::to($request->email)->send(new OrderMail($productDetailsMail));
        Cart::destroy();
        
     return view('frontendcontant.thanks',compact('myorder_id'));
