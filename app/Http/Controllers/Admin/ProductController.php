@@ -61,6 +61,8 @@ class ProductController extends Controller
             $product->price=$request->price;
             $product->compareprice=$request->compare_price;
             $product->sku=$request->sku;
+            $product->track_qty=$request->track_qty;
+
             $product->barcode=$request->barcode;
             $product->qty=$request->qty;
             $product->is_active=$request->status;
@@ -91,7 +93,14 @@ class ProductController extends Controller
 
 
 
+// EDITE PRODUCT
+function edite(Request $request ,$id){
 
+    $categoris = Categorie::select('id', 'name')->with('Brand')->latest()->get();
+    $editeProduct = Product::where('id',$id)-> with('Categorie')-> with('brand')->first();
+    // dd($editeProduct);
+    return view('admin.admincontant.Edite_Product',compact('categoris','editeProduct'));
+}
 
 
 

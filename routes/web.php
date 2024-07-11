@@ -176,6 +176,8 @@ Route::group(['middleware' => ['role:admin']], function () {
         // STOTE PRODUCR
         Route::post('/store/peoduct','storeproduct')->name('storeproduct');
 
+        Route::get('/edite-product/{id}','edite')->name('edite-product');
+
         
         // AJAX FOR CATEGORY
 

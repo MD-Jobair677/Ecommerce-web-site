@@ -295,6 +295,18 @@ class CardController extends Controller
         $orderitem->total = $item->price*$item->qty;
         $orderitem->save();
 
+        $productData = Product::find($item->id);
+
+
+        // UPDATE PRODUCT STOCK
+        if( $productData -> track_qty=='yes' ) {
+
+            $current_qty = $productData->qty;
+            $update_qty = $current_qty - $item->qty;
+            $productData->qty = $update_qty;
+            $productData->save();
+        }
+
 
        }
 

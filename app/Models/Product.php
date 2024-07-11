@@ -25,6 +25,11 @@ class Product extends Model
       }
 
 
+      function brand(){
+        return $this->belongsTo(Brand::class);
+    }
+
+
 
 
 }
