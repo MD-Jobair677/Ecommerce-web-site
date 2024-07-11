@@ -30,7 +30,7 @@ class FrontendController extends Controller
 
     // SHOP
     function shop(Request $request){
-        $categoryselected =' ';
+        $categoryselected =' '; 
         $subcategoryselected =' ';
         // $max=' ';
         // $min=' ';
@@ -50,7 +50,13 @@ class FrontendController extends Controller
 
         }
 
+        if(!empty($request->get('search'))){
+            $allproducts=Product::where('title', "like", "%" .$request->get('search')."%" )
+                               -> orWhere('description', "like", "%" .$request->get('search')."%")
+                               -> get();
+        }
 
+        // dd( $allproducts);
 
         $brands = Brand::get();
         return view('frontendcontant.shop',compact('navlinks','allproducts','brands','categoryselected','subcategoryselected','barndarray','max','min'));

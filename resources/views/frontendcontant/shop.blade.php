@@ -312,6 +312,8 @@
 @push('customjs')
 <script>
 
+            
+
 $(".js-range-slider").ionRangeSlider({
         type: "double",
         min: 0,
@@ -353,18 +355,33 @@ $(".js-range-slider").ionRangeSlider({
        let url = "{{url()->current()}}?";
 
        url+= `&price_min=${my_range.result.from}&price_max=${my_range.result.to}`;
-       console.log(url)
+       
+
+
+
+      let search_value = $('#search_value').val();
+   
+    
+    
+    if(search_value.lelength > 0){
+        url+="&search="+search_value;
+        {{-- window.location.href = url; --}}
+    }   
+
+
+
+
+
        if(array.length > 0 ){
        url+='&brands='+array.toString();
         
-    
+         window.location.href=url;
 
         
        }
 
 
     //    priceshorting
-
    let price=  $('#short').val();
 
 
@@ -389,11 +406,14 @@ $(".js-range-slider").ionRangeSlider({
 
     }
 
-    window.location.href=url;
+
+
+   
+    console.log(search_value);
     // console.log(url);
 
 
-    //    window.location.href = url;
+      window.location.href = url;
        
 
       
