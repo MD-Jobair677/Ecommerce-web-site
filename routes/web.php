@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\frontendcontroller\FrontendController;
+use App\Http\Controllers\frontendcontroller\PageController;
 use App\Http\Controllers\frontendcontroller\WishlistController;
 
 /*
@@ -235,6 +236,10 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     });
 
+
+
+
+    Route::prefix('/admin')->controller(ShippingController::class)->name('admin.')->group(function(){
     // ALL USER
     Route::get('/all-user', [AllUserController::class,'allUser'] )->name('all-user');
     // IS BAN ROUTE
@@ -242,7 +247,19 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
-        
+    // PAGE CREATE
+    
+    Route::get('contact-us',[PageController::class,'contactUs'])->name('contact_us');
+    Route::get('create/contact-page',[PageController::class,'createContactPage'])->name('create.contact_us_page');
+    Route::post('store/page',[PageController::class,'storePage'])->name('store.contact_us_page');
+    
+
+});
+
+
+
+
+
 
 });
 
@@ -292,7 +309,6 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
-    //   Route::get('contact-us',)
  
 
 

@@ -107,7 +107,7 @@
 
 
             $.ajax({
-                url: '{{route("is_ban")}}',
+                url: '{{route("admin.is_ban")}}',
 
                 type: 'post'
                 , data: {
