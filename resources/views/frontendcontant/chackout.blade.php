@@ -305,7 +305,7 @@ $(document).ready(function(){
 
             success:function(response){
                 
-             let grandtotal =    parseInt(response.subtotal) + parseInt(response.totalShippingCharge ) ;
+             let grandtotal = parseInt(response.subtotal) + parseInt(response.totalShippingCharge ) ;
 
 
                if(response.status==true){
