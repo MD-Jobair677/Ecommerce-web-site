@@ -237,6 +237,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     // ALL USER
     Route::get('/all-user', [AllUserController::class,'allUser'] )->name('all-user');
+    // IS BAN ROUTE
+    Route::post('/isban', [AllUserController::class,'is_Ban'] )->name('is_ban');
 
 
 
@@ -248,7 +250,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
         // USER ACCOUNT
-        Route::group(['middleware' => 'auth'], function () { 
+        Route::group(['middleware' => 'is_ban','auth'], function () { 
 
        Route::prefix('/user')->controller(AccountController::class)->name('user.')->group(function(){
 
@@ -264,7 +266,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     //   USERADDRESS
       Route::post('add-useraddressss','userAddress')->name('add-useraddressss');
 
-
+    
 
 
 
@@ -290,6 +292,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
+    //   Route::get('contact-us',)
  
 
 
