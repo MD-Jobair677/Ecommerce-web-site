@@ -7,6 +7,7 @@ use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\admin\AllUserController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\admin\CuponController;
 use App\Http\Controllers\Admin\ProductController;
@@ -143,6 +144,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
+
+
     // BRAND
     Route::prefix('/admin')->controller(BrandController::class)->name('admin.')->group(function(){
        
@@ -231,6 +234,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
     });
+
+    // ALL USER
+    Route::get('/all-user', [AllUserController::class,'allUser'] )->name('all-user');
 
 
 

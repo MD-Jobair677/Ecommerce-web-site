@@ -13,7 +13,9 @@
 
 
             <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-                <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;"><img src="images/product-1.jpg" alt="Product"></a>
+                <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;"><img src="{{asset('storage/productimage/'.$wishList->product->image)}}" alt="Product"></a>
+
+
                     <div class="pt-2">
                         <h3 class="product-title fs-base mb-2"><a href="shop-single-v1.html">{{$wishList->product->title}}</a></h3>
                         <div class="fs-lg text-accent pt-2">${{ number_format($wishList->product->price,2) }}</div>

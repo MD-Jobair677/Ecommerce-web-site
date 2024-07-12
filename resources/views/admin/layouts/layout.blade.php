@@ -41,7 +41,7 @@
                 margin: 20px auto;
             }
 		</style>
-
+	<script src="https://kit.fontawesome.com/1159b8e81c.js" crossorigin="anonymous"></script>
 	</head>
 	<body class="hold-transition sidebar-mini">
 		<!-- Site wrapper -->
@@ -170,7 +170,7 @@
 								</a>
 							</li>	
 							<li class="nav-item">
-								<a href="users.html" class="nav-link">
+								<a href="{{route('all-user')}}" class="nav-link">
 									<i class="nav-icon  fas fa-users"></i>
 									<p>Users</p>
 								</a>

@@ -139,9 +139,26 @@
                         <li class="nav-item">
                             <a href="{{route('user.changepassword')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-lock"></i> Change Password</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('logout')}}"  class="nav-link font-weight-bold" role="tab" aria-controls="tab-register" aria-expanded="false"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </li>
+
+						<li class="nav-item ">
+						
+
+						
+							<a class="dropdown-item nav-link" href="{{ route('logout') }}"
+							   onclick="event.preventDefault();
+											 document.getElementById('logout-form').submit();">
+								{{-- {{ __('Logout') }} --}}
+								<i class="fas fa-sign-out-alt"></i>Logout
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+								@csrf
+							</form>
+
+						
+					</li>
+
+            
                     </ul>
                 </div>
 
