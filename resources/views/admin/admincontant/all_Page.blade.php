@@ -22,10 +22,12 @@
         <!-- Default box -->
         <div class="container-fluid">
             <div class="card">
+                    <form  method="get">
                 <div class="card-header">
+                <button type="button" onclick="window.location.href='{{route('admin.contact_us')}}' " class="btn btn-primary">Reset</button>
                     <div class="card-tools">
                         <div class="input-group input-group" style="width: 250px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <input type="text" value="{{ Request::get('keyword') }}"  name="keyword" class="form-control float-right" placeholder="Search">
         
                             <div class="input-group-append">
                               <button type="submit" class="btn btn-default">
@@ -35,6 +37,8 @@
                           </div>
                     </div>
                 </div>
+
+                </form>
                 <div class="card-body table-responsive p-0">								
                     <table class="table table-hover text-nowrap">
                         <thead>
@@ -47,27 +51,29 @@
                                 <th width="">Action</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @forelse ($products as $key=> $product )
+
+
+                        <tbody>
+                            @forelse ($pages as $key=> $page )
                                 
                             <tr>
-                                <td>{{$products->firstItem()+$key}}</td>
+                                <td>{{$pages->firstItem()+$key}}</td>
 
 
-                                <td> <a href="{{asset('storage/productimage/'.$product->image)}}" target="_blank">  <img src="{{asset('storage/productimage/'.$product->image)}}" class="img-thumbnail" width="50" > </a> </td>
+                              
 
 
-                                <td><a href="#"> {{$product->title}} </a></td>
-                                <td>{{$product->price}}</td>
-                                <td>{{$product->qty}} left in Stock</td>
-                                <td>{{$product->sku}}</td>											
+                                <td><a href="#"> {{$page->page_name}} </a></td>
+                                
+                           
+                              										
                                 <td>
-                                    <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
+
+                                
+                                  {{ strip_tags($page->discription) }}
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.edite-product',$product->id)}}">
+                                    <a href="#">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                         </svg>
@@ -97,11 +103,14 @@
 
 
                            
-                        </tbody> --}}
+                        </tbody>
+
+
+
                     </table>										
                 </div>
                 <div class="card-footer clearfix">
-                   {{-- {{$products->links()}} --}}
+                   {{$pages->links()}}
                 </div>
             </div>
         </div>
@@ -109,6 +118,8 @@
     </section>
     <!-- /.content -->
 </div>
+
+
 <!-- /.content-wrapper -->
     
 @endsection

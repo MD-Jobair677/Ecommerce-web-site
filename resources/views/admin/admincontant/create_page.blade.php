@@ -17,11 +17,11 @@
                     <h1>Create page</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="products.html" class="btn btn-primary">Back</a>
+                    <a href="{{route('admin.contact_us')}}" class="btn btn-primary">Back</a>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.container-fluid -->      
     </section>
     <!-- Main content -->
     <section class="content">

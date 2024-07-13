@@ -15,9 +15,21 @@ class PageController extends Controller
 {
 
     use Traits;
-    function contactUs(){
+    function contactUs(Request $request){
 
-        return view('admin.admincontant.all_Page');
+        if($request->keyword){
+            
+        $pages = Page:: where('page_name','Like','%'.$request->keyword.'%')-> select(['page_name','discription']) ->paginate();
+
+        
+        }else{
+            $pages = Page::select(['page_name','discription'])->paginate();
+
+        }
+
+      
+
+        return view('admin.admincontant.all_Page',compact('pages'));
     }
 
 
